@@ -5,12 +5,11 @@ import java.awt.Point;
 
 import de.hpi.javaide.breakout.basics.Rectangular;
 import de.hpi.javaide.breakout.starter.Game;
-import de.hpi.javaide.breakout.starter.GameConstants;
 import processing.core.PApplet;
 
 public class Paddle extends Rectangular {
 	public Paddle(Game game) {
-		super(game, new Point(GameConstants.SCREEN_X / 2, GameConstants.SCREEN_Y - 50), new Dimension(100, 20));
+		super(game, new Point(Game.SCREEN_X / 2, Game.SCREEN_Y - 50), new Dimension(100, 20));
 		setColor(150, 150, 150);
 	}
 
@@ -23,6 +22,10 @@ public class Paddle extends Rectangular {
 	}
 
 	public void move() {
-		update(new Point(game.mouseX, getY()), new Dimension(getWidth(), getHeight()));
+		if (game.mouseX > Game.SCREEN_X) {
+			update(new Point(Game.SCREEN_X, getY()), new Dimension(getWidth(), getHeight()));
+		} else {
+			update(new Point(game.mouseX, getY()), new Dimension(getWidth(), getHeight()));
+		}
 	}
 }

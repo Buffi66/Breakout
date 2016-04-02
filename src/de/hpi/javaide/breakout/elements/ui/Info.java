@@ -9,13 +9,13 @@ public class Info extends UIObject {
 
 	private String content;
 	
-	public Info(Game game, String content) {
+	public Info(final Game game, final String content) {
 		super(game);
 		this.content = content;
 	}
 
 	@Override
-	public void display() {
+	public final void display() {
 		game.fill(255);
 	    game.textFont(Font.getFont32());
 	    game.textAlign(PApplet.CENTER, PApplet.CENTER);
@@ -23,8 +23,7 @@ public class Info extends UIObject {
 	}
 
 	@Override
-	public void update(String input) {
-		// TODO Auto-generated method stub
-		
+	public void update(final String input) {
+		// nothing to do here
 	}
 }

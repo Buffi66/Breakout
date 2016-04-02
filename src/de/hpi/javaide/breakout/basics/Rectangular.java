@@ -8,14 +8,14 @@ import de.hpi.javaide.breakout.starter.Game;
 
 public abstract class Rectangular extends CollisionObject {
 
-	public Rectangular(Game game, Point position, Dimension dimension) {
-		super(game, position, dimension);
-		geometry = new Rectangle2D.Float(getX(), getY(), getWidth(), getHeight());
-	}
+    public Rectangular(Game game, Point position, Dimension dimension) {
+        super(game, position, dimension);
+        geometry = new Rectangle2D.Float(getX()-getWidth()/2, getY()-getHeight()/2, getWidth(), getHeight());
+    }
 
-	@Override
-	public void update(Point position, Dimension dimension) {
-		super.update(position, dimension);
-		((Rectangle2D) this.getGeometry()).setFrame(getX(), getY(), getWidth(), getHeight());
-	}
+    @Override
+    public void update(Point position, Dimension dimension) {
+        super.update(position, dimension);
+        ((Rectangle2D) this.getGeometry()).setFrame(getX()-getWidth()/2, getY()-getHeight()/2, getWidth(), getHeight());
+    }
 }

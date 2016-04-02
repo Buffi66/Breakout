@@ -54,8 +54,7 @@ final public class StartScreen implements Screen {
 	
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-
+		// nothing to do here
 	}
 
 	@Override

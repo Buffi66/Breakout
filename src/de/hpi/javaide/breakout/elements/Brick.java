@@ -3,18 +3,18 @@ package de.hpi.javaide.breakout.elements;
 import java.awt.Dimension;
 import java.awt.Point;
 
-import processing.core.PApplet;
 import de.hpi.javaide.breakout.basics.Color;
 import de.hpi.javaide.breakout.basics.Rectangular;
 import de.hpi.javaide.breakout.starter.Game;
 import de.hpi.javaide.breakout.starter.GameConstants;
+import processing.core.PApplet;
 
 public class Brick extends Rectangular {
 	
 	private int hitCounter;
 	private int score;
 	
-	public Brick(Game game, Point position, Dimension dimension, Color color, int score) {
+	public Brick(final Game game, final Point position, final Dimension dimension, final Color color, final int score) {
 		super(game, position, dimension);
 		this.score = score;
 		hitCounter = GameConstants.HITS;
@@ -22,7 +22,7 @@ public class Brick extends Rectangular {
 	}
 	
 	@Override
-	public void display() {
+	public final void display() {
 		game.rectMode(PApplet.CENTER);
 		game.noStroke();
 		if (isDead()) {
@@ -30,20 +30,19 @@ public class Brick extends Rectangular {
 			game.fill(0, 0, 0);
 		} else {
 			game.fill(getR(), getG(), getB());
-			int a = 0;
 		}
 		game.rect(getX(), getY(), getWidth(), getHeight());
 	}
 	
-	public void nextStatus() {
+	public final void nextStatus() {
 		if (hitCounter >= 0) {
 			hitCounter--;
 			game.increaseScore(score);
-			setColor(getR()-50, getG()-50,getB()-50);
+			setColor(getR() - 50, 0, 0);
 		}
 	}
 	
-	public boolean isDead() {
-		return(hitCounter==0);
+	public final boolean isDead() {
+		return (hitCounter == 0);
 	}
 }

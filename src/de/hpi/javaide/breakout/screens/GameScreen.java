@@ -1,17 +1,12 @@
 package de.hpi.javaide.breakout.screens;
 
-import de.hpi.javaide.breakout.basics.UIObject;
-import de.hpi.javaide.breakout.elements.Ball;
-import de.hpi.javaide.breakout.elements.BallDepot;
-import de.hpi.javaide.breakout.elements.CollisionLogic;
-import de.hpi.javaide.breakout.elements.Paddle;
-import de.hpi.javaide.breakout.elements.Wall;
+import de.hpi.javaide.breakout.elements.*;
 import de.hpi.javaide.breakout.elements.ui.Score;
 import de.hpi.javaide.breakout.elements.ui.Timer;
 import de.hpi.javaide.breakout.starter.Game;
 import de.hpi.javaide.breakout.starter.GameConstants;
 
-final public class GameScreen implements Screen {
+public final class GameScreen implements Screen {
 
 	private static Screen instance;
 
@@ -22,11 +17,11 @@ final public class GameScreen implements Screen {
 	private Wall wall;
 
 	private Score score;
-	private UIObject timer;
+	private Timer timer;
 
 	private Game game;
-
-	private GameScreen(Game game) {
+	
+	private GameScreen(final Game game) {
 		this.game = game;
 		init();
 	}
@@ -80,10 +75,17 @@ final public class GameScreen implements Screen {
 		} else {
 			currentBall.move();
 			CollisionLogic.checkCollision(game, currentBall, paddle, wall);
-			currentBall = CollisionLogic.checkCollisionwithLowerBorder(currentBall);
+			if (CollisionLogic.checkCollisionWithLowerBorder(currentBall)) {
+				currentBall = null;
+				timer.pause();
+			}
 			if (wall.getNoOfBricks() == 0) {
 				wall = new Wall(game, GameConstants.BRICKS_ROWS, GameConstants.BRICKS_COLUMNS);
 				currentBall.moveToStartPosition();
+			}
+			if (timer.getTimerWasModuloTen()) {
+				currentBall.increaseSpeedX(1);
+				currentBall.increaseSpeedY(1);
 			}
 		}
 		timer.update(null);
@@ -106,6 +108,9 @@ final public class GameScreen implements Screen {
 		switch (key) {
 		case Screen.KEY_ENTER:
 			currentBall = ballDepot.dispense();
+			currentBall.setSpeedX(Ball.INITIAL_SPEED);
+			currentBall.setSpeedY(Ball.INITIAL_SPEED);
+			timer.reset();
 			break;
 		case Screen.KEY_SPACE:
 		default:

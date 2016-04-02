@@ -17,7 +17,7 @@ public abstract class CollisionObject implements Collidable, Displayable, Colora
 	protected Point position;
 	private Color color;
 
-	public CollisionObject(Game game, Point position, Dimension dimension) {
+	public CollisionObject(final Game game, final Point position, final Dimension dimension) {
 		this.game = game;
 		this.position = position;
 		this.dimension = dimension;
@@ -25,52 +25,52 @@ public abstract class CollisionObject implements Collidable, Displayable, Colora
 	}
 
 	@Override
-	public int getWidth() {
+	public final int getWidth() {
 		return dimension.width;
 	}
 
 	@Override
-	public int getHeight() {
+	public final int getHeight() {
 		return dimension.height;
 	}
 
 	@Override
-	public int getX() {
+	public final int getX() {
 		return position.x;
 	}
 
 	@Override
-	public int getY() {
+	public final int getY() {
 		return position.y;
 	}
 
 	@Override
-	public int getR() {
+	public final int getR() {
 		return color.getR();
 	}
 
 	@Override
-	public int getG() {
+	public final int getG() {
 		return color.getG();
 	}
 
 	@Override
-	public int getB() {
+	public final int getB() {
 		return color.getB();
 	}
 
 	@Override
-	public void setColor(int r, int g, int b) {
+	public final void setColor(final int r, final int g, final int b) {
 		this.color = new Color(r, g, b);
 	}
 
 	@Override
-	public Shape getGeometry() {
+	public final Shape getGeometry() {
 		return this.geometry;
 	}
 
 	@Override
-	public void update(Point position, Dimension dimension) {
+	public void update(final Point position, final Dimension dimension) {
 		this.position = position;
 		this.dimension = dimension;
 	}
