@@ -1,0 +1,23 @@
+apply plugin: 'application'
+apply plugin: 'java'
+apply plugin: 'distribution'
+
+version = '1.0'
+
+mainClassName = 'de.hpi.javaide.breakout.starter.Main'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+	compile 'org.processing:core:2.2.1'
+}
+
+sourceSets {
+	main {
+		java {
+			srcDir 'src'
+		}
+	}
+}
